@@ -10,5 +10,7 @@
     <string name = "new_game">New Game</string>
     <string name = "continue_game">Continue</string>
     <string name = "about">About</string>
+    <string name = "take">Take</string>
+    <string name = "inventory">Inventory</string>
 
 </resources>

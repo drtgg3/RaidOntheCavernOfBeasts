@@ -19,6 +19,7 @@ public class MapTraversal extends AppCompatActivity {
         setContentView(R.layout.activity_map_traversal);
 
         final arrayCreation Map = new arrayCreation();
+        final eventManager eventHandler = new eventManager();
         final TextView eventViewer = (TextView) findViewById(R.id.EventViewer);
 
 
@@ -35,7 +36,7 @@ public class MapTraversal extends AppCompatActivity {
                 {
                     Map.moveNorth();
                     String eventViewerText = "You moved north\n You are now at (" + Map.currentRow + ","
-                            + Map.currentColumn + ")";
+                            + Map.currentColumn + ")" + "\n" + eventHandler.roomMove(Map.mapID);
 
                     eventViewer.setText(eventViewerText);
                 }
@@ -60,7 +61,7 @@ public class MapTraversal extends AppCompatActivity {
                 {
                     Map.moveEast();
                     String eventViewerText = "You moved east\n You are now at (" + Map.currentRow + ","
-                            + Map.currentColumn + ")";
+                            + Map.currentColumn + ")" +"\n" + eventHandler.roomMove(Map.mapID);
 
                     eventViewer.setText(eventViewerText);
                 }
@@ -81,7 +82,7 @@ public class MapTraversal extends AppCompatActivity {
                 {
                     Map.moveSouth();
                     String eventViewerText = "You moved south\n You are now at (" + Map.currentRow + ","
-                            + Map.currentColumn + ")";
+                            + Map.currentColumn + ")" + "\n" + eventHandler.roomMove(Map.mapID);
 
                     eventViewer.setText(eventViewerText);
                 }
@@ -101,10 +102,34 @@ public class MapTraversal extends AppCompatActivity {
                 {
                     Map.moveWest();
                     String eventViewerText = "You moved south\n You are now at (" + Map.currentRow + ","
-                            + Map.currentColumn + ")";
+                            + Map.currentColumn + ")" + "\n" + eventHandler.roomMove(Map.mapID);
 
                     eventViewer.setText(eventViewerText);
                 }
+            }
+        });
+
+        final Button takeButton =(Button) findViewById(R.id.Take);
+        takeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(eventHandler.Item.roomCheck(Map.mapID))
+                {
+                    eventHandler.Item.pickupItem(Map.mapID);
+                }
+                else {
+                    String eventViewerText = "NO items here!";
+                    eventViewer.setText(eventViewerText);
+                }
+            }
+        });
+
+        final Button inventoryButton = (Button) findViewById(R.id.Inventory);
+        inventoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eventViewer.setText(eventHandler.Item.inventoryCheck());
+
             }
         });
     }
