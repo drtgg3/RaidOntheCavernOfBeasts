@@ -5,12 +5,19 @@
     <string name = "south_button">South</string>
     <string name = "east_button">East</string>
     <string name = "west_button">West</string>
-    <string name = "default_message">You are at the entrance</string>
+    <string name = "default_message">A large barren room with a single wooden door that seems to
+        lead further in. Its old, molded over and seems to have seen much better days."</string>
     <string name =  "title_text">Raid On The Cavern Of Beasts!</string>
     <string name = "new_game">New Game</string>
     <string name = "continue_game">Continue</string>
     <string name = "about">About</string>
     <string name = "take">Take</string>
     <string name = "inventory">Inventory</string>
+    <string name = "options">Options</string>
+    <string name = "save_game_button">Save Game</string>
+    <string name = "load_game_button">Load Game</string>
+    <string name = "exit_game_button">Exit Game</string>
+    <string name = "back_button">Back</string>
+
 
 </resources>

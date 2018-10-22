@@ -1,5 +1,6 @@
 package com.example.david.raidonthecavernofbeasts;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -101,7 +102,7 @@ public class MapTraversal extends AppCompatActivity {
                 else
                 {
                     Map.moveWest();
-                    String eventViewerText = "You moved south\n You are now at (" + Map.currentRow + ","
+                    String eventViewerText = "You moved west\n You are now at (" + Map.currentRow + ","
                             + Map.currentColumn + ")" + "\n" + eventHandler.roomMove(Map.mapID);
 
                     eventViewer.setText(eventViewerText);
@@ -130,6 +131,14 @@ public class MapTraversal extends AppCompatActivity {
             public void onClick(View v) {
                 eventViewer.setText(eventHandler.Item.inventoryCheck());
 
+            }
+        });
+
+        final Button optionsButton = (Button) findViewById(R.id.Options);
+        optionsButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MapTraversal.this, OptionsMenu.class));
             }
         });
     }

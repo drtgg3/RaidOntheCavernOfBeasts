@@ -22,6 +22,9 @@
         <activity android:name=".MapTraversal">
 
         </activity>
+        <activity android:name=".OptionsMenu">
+
+        </activity>
     </application>
 
 </manifest>

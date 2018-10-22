@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,9 +15,10 @@
         android:layout_marginLeft="136dp"
         android:layout_marginRight="136dp"
         android:layout_marginStart="136dp"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="56dp"
         android:text="@string/north_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EventViewer" />
 
@@ -29,7 +31,7 @@
         android:layout_marginLeft="136dp"
         android:layout_marginRight="136dp"
         android:layout_marginStart="136dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="35dp"
         android:text="@string/south_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,12 +85,12 @@
 
     <Button
         android:id="@+id/Take"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="96dp"
+        android:layout_height="46dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="242dp"
+        android:layout_marginEnd="208dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="242dp"
+        android:layout_marginRight="208dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="50dp"
         android:text="@string/take"
@@ -100,17 +102,29 @@
 
     <Button
         android:id="@+id/Inventory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="47dp"
         android:layout_marginBottom="17dp"
         android:layout_marginEnd="29dp"
-        android:layout_marginLeft="113dp"
+        android:layout_marginLeft="85dp"
         android:layout_marginRight="29dp"
-        android:layout_marginStart="113dp"
+        android:layout_marginStart="85dp"
         android:layout_marginTop="49dp"
         android:text="@string/inventory"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Take"
         app:layout_constraintTop_toBottomOf="@+id/East" />
+
+    <Button
+        android:id="@+id/Options"
+        android:layout_width="91dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="17dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/options"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Inventory"
+        app:layout_constraintStart_toEndOf="@+id/Take"
+        app:layout_constraintTop_toBottomOf="@+id/South" />
 </android.support.constraint.ConstraintLayout>
