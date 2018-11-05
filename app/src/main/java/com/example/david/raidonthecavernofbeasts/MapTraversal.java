@@ -23,6 +23,10 @@ public class MapTraversal extends AppCompatActivity {
         final eventManager eventHandler = new eventManager();
         final TextView eventViewer = (TextView) findViewById(R.id.EventViewer);
 
+        //have to initialize it right away to avoid potential saving issues.
+        eventHandler.Item.initializeSaveList();
+
+
 
         final Button northButton = (Button) findViewById(R.id.North);
         northButton.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +142,10 @@ public class MapTraversal extends AppCompatActivity {
         optionsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MapTraversal.this, OptionsMenu.class));
+                //newstuff
+                Intent intent = new Intent (MapTraversal.this,OptionsMenu.class);
+                intent.putExtra("GAME_SAVE_DATA", eventHandler.Item.saveList);
+                startActivity(intent);
             }
         });
     }

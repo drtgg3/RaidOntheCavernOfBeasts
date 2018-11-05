@@ -263,6 +263,16 @@ public class eventManager {
         {
             return "This is room 23! No problems here!";
         }
+
+        char[] getSaveList (){
+          return Item.saveList;
+        }
+
+        void sendSaveList(char[] saveList){
+            Item.loadSaveList(saveList);
+        }
+
+
 }
 
 
