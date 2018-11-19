@@ -26,9 +26,22 @@ public class MainMenu extends AppCompatActivity {
         });
 
 
-        final Button contineGame = (Button) findViewById(R.id.Continue);
+        final Button continueGame = (Button) findViewById(R.id.Continue);
+            /*continueGame.setOnClickListener(new View.OnClickListener() {
+               @Override
+                public void onClick(View v) {
+                    loadGame load = new loadGame();
+                    String[] gameData = load.loadSavedGame(MainMenu.this);
+                    Intent loadIntent = new Intent(MainMenu.this,MapTraversal.class);
+                    loadIntent.putExtra("itemData",gameData[0]);
+                    loadIntent.putExtra("xCoordinate",gameData[1]);
+                    loadIntent.putExtra("yCoordinate",gameData[2]);
+                    startActivity(loadIntent);
+                }
+            });
+        };*/
         final Button aboutGame = (Button) findViewById(R.id.About);
 
     }
-
 }
+

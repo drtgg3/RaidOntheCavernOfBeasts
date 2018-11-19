@@ -8,24 +8,33 @@ import java.io.InputStreamReader;
 
 public class loadGame {
 
-    String loadSavedGame(Context ctx){
-        String GAMEDATA = "";
+    String[] loadSavedGame(Context ctx){
+        String[] gameData = new String[3];
         try {
             FileInputStream fis = ctx.openFileInput("GAMESAVE.txt");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader bufferedReader = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            while ((GAMEDATA = bufferedReader.readLine()) != null)
+            String reading = null;
+            int counter=0;
+
+            while ((reading = bufferedReader.readLine()) != null)
             {
-                sb.append(GAMEDATA);
+                String[] splitted = reading.split("\\s+");
+                for(String part : splitted){
+                    gameData[counter]  = part;
+                    counter+=1;
+                }
             }
-            return sb.toString();
+
+            fis.close();
+            return gameData;
         }
         catch (Exception e) {
-            GAMEDATA = "COULDNT FIND THE FILE";
+            gameData[0] = "Something went wrong with the file!";
 
         }
-        return GAMEDATA;
+
+        return gameData;
     }
 
 

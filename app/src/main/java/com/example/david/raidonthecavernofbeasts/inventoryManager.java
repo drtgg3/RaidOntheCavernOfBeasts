@@ -95,8 +95,10 @@ public class inventoryManager {
         }
     }
 
-    void loadSaveList(char[] SaveList) {
-        if (saveList[0] == '1')
+    void loadSaveList(String SaveList) {
+
+        char [] charSaveList = SaveList.toCharArray();
+        if (charSaveList[0] == '1')
         {
             torch = true;
         }
@@ -104,7 +106,7 @@ public class inventoryManager {
             torch = false;
         }
 
-        if (saveList[1] == '1')
+        if (charSaveList[1] == '1')
         {
             potion = true;
         }
@@ -112,7 +114,7 @@ public class inventoryManager {
             potion = false;
         }
 
-        if(saveList[2] == '1')
+        if(charSaveList[2] == '1')
         {
             swordOfKings = true;
         }

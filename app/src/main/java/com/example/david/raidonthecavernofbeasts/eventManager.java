@@ -268,7 +268,7 @@ public class eventManager {
           return Item.saveList;
         }
 
-        void sendSaveList(char[] saveList){
+        void sendSaveList(String saveList){
             Item.loadSaveList(saveList);
         }
 

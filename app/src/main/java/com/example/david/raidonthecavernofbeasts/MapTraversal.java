@@ -1,5 +1,8 @@
 package com.example.david.raidonthecavernofbeasts;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MapTraversal extends AppCompatActivity {
+public class MapTraversal extends AppCompatActivity implements LifecycleObserver  {
+
+    String gameData;
+    int xCoordinate;
+    int yCoordinate;
+    boolean loadData = false;
+    final arrayCreation Map = new arrayCreation();
+    final eventManager eventHandler = new eventManager();
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -19,14 +29,13 @@ public class MapTraversal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_traversal);
 
-        final arrayCreation Map = new arrayCreation();
-        final eventManager eventHandler = new eventManager();
+
+        //final arrayCreation Map = new arrayCreation();
+        //final eventManager eventHandler = new eventManager();
         final TextView eventViewer = (TextView) findViewById(R.id.EventViewer);
 
         //have to initialize it right away to avoid potential saving issues.
         eventHandler.Item.initializeSaveList();
-
-
 
         final Button northButton = (Button) findViewById(R.id.North);
         northButton.setOnClickListener(new View.OnClickListener() {
@@ -142,12 +151,50 @@ public class MapTraversal extends AppCompatActivity {
         optionsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //newstuff
                 Intent intent = new Intent (MapTraversal.this,OptionsMenu.class);
                 intent.putExtra("GAME_SAVE_DATA", eventHandler.Item.saveList);
-                startActivity(intent);
+                intent.putExtra("xCoordinate", Map.currentRow);
+                intent.putExtra("yCoordinate",Map.currentColumn);
+                startActivityForResult(intent,1);
             }
         });
+
+
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    protected void loadCheck (){
+        if (loadData){
+            Map.currentRow = xCoordinate;
+            xCoordinate = 0;
+            Map.currentColumn = yCoordinate;
+            yCoordinate = 0;
+            eventHandler.Item.loadSaveList(gameData);
+            gameData = "";
+            loadData = false;
+
+            TextView eventViewer = (TextView) findViewById(R.id.EventViewer);
+
+            String eventViewerText = "You are now at (" + Map.currentRow + ","
+                    + Map.currentColumn + ")" + "\n" + eventHandler.roomMove(Map.mapID);
+            eventViewer.setText(eventViewerText);
+        }
+        //}
+    }
+
+    //really wont ever go off unless we go to the options menu to check if we have new data to input
+    //through the load method there
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if (requestCode == 1){
+            if(resultCode == RESULT_OK){
+                gameData = data.getStringExtra("itemData");
+                xCoordinate = data.getIntExtra("xCoordinate",0);
+                yCoordinate = data.getIntExtra("yCoordinate",0);
+                loadData = true;
+            }
+        }
+
     }
 
 
